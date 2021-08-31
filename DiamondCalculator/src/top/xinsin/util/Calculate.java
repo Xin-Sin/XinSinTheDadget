@@ -3,7 +3,7 @@ package top.xinsin.util;
 public final class Calculate {
     private static final long mul = 25214903917L;
     private static final long mask = (1L << 48) - 1;
-    public static final String[] chunkDiamond(long seed,long chunkX,long chunkZ){
+    public static final String[] chunkDiamondSix(long seed,long chunkX,long chunkZ){
         String [] strings = new String[2];
         long a = seed ^ mul & mask;
         long b = 0,c = 0,d = 0,e = 0,i = 0,j = 0,f = 0,g = 0,h = 0,relativelyX = 0,relativelyZ = 0;
@@ -14,6 +14,26 @@ public final class Calculate {
         e = (d * mul + 11) & mask;
         j = (((d >> 16) << 32) + ((e << 16) >> 32) ) | 1;
         f = (((16 * chunkX * i + 16 * chunkZ * j) ^ seed) + 60009);
+        f = f ^ mul & mask;
+        g = (f * mul + 11) & mask;
+        h = (g * mul + 11) & mask;
+        relativelyX = g >> 44;
+        relativelyZ = h >> 44;
+        strings[0] = String.valueOf(relativelyX + 16 * chunkX);
+        strings[1] = String.valueOf(relativelyZ + 16 * chunkZ);
+        return strings;
+    }
+    public static final String[] chunkDiamondSeven(long seed,long chunkX,long chunkZ){
+        String [] strings = new String[2];
+        long a = seed ^ mul & mask;
+        long b = 0,c = 0,d = 0,e = 0,i = 0,j = 0,f = 0,g = 0,h = 0,relativelyX = 0,relativelyZ = 0;
+        b = (a * mul + 11) & mask;
+        c = (b * mul + 11) & mask;
+        i = (((b >> 16) << 32) + ((c <<16) >> 32) ) | 1;
+        d = (c * mul + 11) & mask;
+        e = (d * mul + 11) & mask;
+        j = (((d >> 16) << 32) + ((e << 16) >> 32) ) | 1;
+        f = (((16 * chunkX * i + 16 * chunkZ * j) ^ seed) + 60011);
         f = f ^ mul & mask;
         g = (f * mul + 11) & mask;
         h = (g * mul + 11) & mask;

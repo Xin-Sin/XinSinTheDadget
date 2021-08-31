@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="410.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="top.xinsin.ui.WindowController">
@@ -34,7 +35,6 @@
       <Label layoutX="13.0" layoutY="349.0" prefHeight="15.0" prefWidth="134.0" text="程序作者:xinxin,wzpmc" />
       <Label layoutX="12.0" layoutY="372.0" prefHeight="15.0" prefWidth="56.0" text="项目地址:" />
       <Hyperlink layoutX="27.0" layoutY="386.0" text="https://github.com/XinSin-top/XinSinTheDadget/tree/main" />
-      <Button fx:id="$" defaultButton="true" layoutX="65.0" layoutY="4.0" mnemonicParsing="false" text="1.16.5" />
-      <Button layoutX="120.0" layoutY="4.0" mnemonicParsing="false" text="1.17.1" />
+      <ToggleButton fx:id="cutover" layoutX="80.0" layoutY="4.0" onAction="#cutoverMot" mnemonicParsing="false" text="1.16.5" />
    </children>
 </AnchorPane>
