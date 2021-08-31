@@ -13,6 +13,8 @@
 # idea
 .idea
 
+.out
+
 # Package Files #
 *.jar
 *.war
