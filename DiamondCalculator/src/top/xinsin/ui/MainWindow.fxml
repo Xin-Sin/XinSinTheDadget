@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="410.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="top.xinsin.ui.WindowController">
+<AnchorPane prefHeight="410.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="top.xinsin.ui.WindowController">
    <children>
       <TextField fx:id="seed" layoutX="82.0" layoutY="30.0" />
       <Label layoutX="53.0" layoutY="30.0" prefHeight="23.0" prefWidth="27.0" text="种子" />
@@ -19,9 +19,9 @@
       <Label layoutX="301.0" layoutY="24.0" prefHeight="36.0" prefWidth="48.0" text="计算结果" />
       <Label layoutX="321.0" layoutY="57.0" prefHeight="23.0" prefWidth="56.0" text="钻石X坐标" />
       <Label layoutX="321.0" layoutY="83.0" prefHeight="23.0" prefWidth="56.0" text="钻石Z坐标" />
-      <TextField fx:id="diamondX" layoutX="383.0" layoutY="57.0" promptText="你猜猜是什么" />
-      <TextField fx:id="diamondZ" layoutX="383.0" layoutY="83.0" promptText="你猜猜是什么" />
-      <Label layoutX="14.0" layoutY="8.0" prefHeight="23.0" prefWidth="68.0" text="单计算" />
+      <TextField fx:id="diamondX" editable="false" layoutX="383.0" layoutY="57.0" promptText="你猜猜是什么" />
+      <TextField fx:id="diamondZ" editable="false" layoutX="383.0" layoutY="83.0" promptText="你猜猜是什么" />
+      <Label layoutX="12.0" layoutY="18.0" prefHeight="23.0" prefWidth="68.0" text="单计算" />
       <Label layoutX="14.0" layoutY="168.0" prefHeight="29.0" prefWidth="178.0" text="多区块计算 默认是100*100区块" />
       <Label layoutX="53.0" layoutY="200.0" prefHeight="17.0" prefWidth="27.0" text="种子" />
       <TextField fx:id="allSeed" layoutX="83.0" layoutY="197.0" />
@@ -31,8 +31,10 @@
       <Label layoutX="12.0" layoutY="295.0" prefHeight="15.0" prefWidth="161.0" text="算法作者:一只冰迷" />
       <Label layoutX="13.0" layoutY="313.0" prefHeight="15.0" prefWidth="98.0" text="原作者视频链接:" />
       <Hyperlink layoutX="21.0" layoutY="328.0" text="https://www.bilibili.com/video/BV1nU4y1E7Ja" />
-      <Label layoutX="13.0" layoutY="349.0" prefHeight="15.0" prefWidth="134.0" text="程序作者:xinxin wzpmc" />
+      <Label layoutX="13.0" layoutY="349.0" prefHeight="15.0" prefWidth="134.0" text="程序作者:xinxin,wzpmc" />
       <Label layoutX="12.0" layoutY="372.0" prefHeight="15.0" prefWidth="56.0" text="项目地址:" />
       <Hyperlink layoutX="27.0" layoutY="386.0" text="https://github.com/XinSin-top/XinSinTheDadget/tree/main" />
+      <Button fx:id="$" defaultButton="true" layoutX="65.0" layoutY="4.0" mnemonicParsing="false" text="1.16.5" />
+      <Button layoutX="120.0" layoutY="4.0" mnemonicParsing="false" text="1.17.1" />
    </children>
 </AnchorPane>
