@@ -15,10 +15,6 @@ public class CalculateUtils {
     public static double divide(double n1,double n2){
         return n1 / n2;
     }
-    public static String to(String num,Integer scale,Integer newscale){
-        return Integer.toString(Integer.valueOf(num,scale),newscale);
-    }
-    public static double sin(double x){
-            return Math.sin(x);
-    }
+    public static String to(String num,Integer scale,Integer newscale){return Integer.toString(Integer.valueOf(num,scale),newscale);}
+    public static double sin(double x){return Math.sin(x); }
 }
