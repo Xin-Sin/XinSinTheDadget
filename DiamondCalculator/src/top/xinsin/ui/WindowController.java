@@ -9,10 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static top.xinsin.util.Calculate.chunkDiamondSeven;
-import static top.xinsin.util.Calculate.chunkDiamondSix;
+import static top.xinsin.util.Calculate.*;
 
 public class WindowController implements Initializable {
     @FXML
@@ -61,7 +61,13 @@ public class WindowController implements Initializable {
 
     @FXML
     public void allCommitButton(ActionEvent actionEvent) {
-
+        if (cutover.isSelected() == false){
+            ArrayList arrayList = allChunkDiamondSix(Long.parseLong(allSeed.getText()),100,100);
+            allRes.setText(arrayList.toString());
+        }else if (cutover.isSelected() == true){
+            ArrayList arrayList = allChunkDiamondSeven(Long.parseLong(allSeed.getText()),100,100);
+            allRes.setText(arrayList.toString());
+        }
     }
     public WindowController() {
     }

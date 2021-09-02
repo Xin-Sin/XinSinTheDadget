@@ -1,89 +1,105 @@
 package top.xinsin.util;
 
+import java.util.ArrayList;
+
 public final class Calculate {
+    private static  String [] strings = new String[2];
+    private static final ArrayList arrayList = new ArrayList();
+    private static final long [] longs = new long[2];
     private static final long mul = 25214903917L;
     private static final long mask = (1L << 48) - 1;
-    public static final String[] chunkDiamondSix(long seed,long chunkX,long chunkZ){
-        String [] strings = new String[2];
-        long a = seed ^ mul & mask;
-        long b = 0,c = 0,d = 0,e = 0,i = 0,j = 0,f = 0,g = 0,h = 0,relativelyX = 0,relativelyZ = 0;
-        b = (a * mul + 11) & mask;
-        c = (b * mul + 11) & mask;
-        i = (((b >> 16) << 32) + ((c <<16) >> 32) ) | 1;
-        d = (c * mul + 11) & mask;
-        e = (d * mul + 11) & mask;
-        j = (((d >> 16) << 32) + ((e << 16) >> 32) ) | 1;
-        f = (((16 * chunkX * i + 16 * chunkZ * j) ^ seed) + 60009);
-        f = f ^ mul & mask;
-        g = (f * mul + 11) & mask;
-        h = (g * mul + 11) & mask;
-        relativelyX = g >> 44;
-        relativelyZ = h >> 44;
-        strings[0] = String.valueOf(relativelyX + 16 * chunkX);
-        strings[1] = String.valueOf(relativelyZ + 16 * chunkZ);
-        return strings;
-    }
-    public static final String[] chunkDiamondSeven(long seed,long chunkX,long chunkZ){
-        String [] strings = new String[2];
-        long a = seed ^ mul & mask;
-        long b = 0,c = 0,d = 0,e = 0,i = 0,j = 0,f = 0,g = 0,h = 0,relativelyX = 0,relativelyZ = 0;
-        b = (a * mul + 11) & mask;
-        c = (b * mul + 11) & mask;
-        i = (((b >> 16) << 32) + ((c <<16) >> 32) ) | 1;
-        d = (c * mul + 11) & mask;
-        e = (d * mul + 11) & mask;
-        j = (((d >> 16) << 32) + ((e << 16) >> 32) ) | 1;
-        f = (((16 * chunkX * i + 16 * chunkZ * j) ^ seed) + 60011);
-        f = f ^ mul & mask;
-        g = (f * mul + 11) & mask;
-        h = (g * mul + 11) & mask;
-        relativelyX = g >> 44;
-        relativelyZ = h >> 44;
-        strings[0] = String.valueOf(relativelyX + 16 * chunkX);
-        strings[1] = String.valueOf(relativelyZ + 16 * chunkZ);
-        return strings;
-    }
-    /*public static final long getI(long seed){
-        long i = 0;
-        long tmp = seed ^ mul & mask;
-        tmp = (tmp * mul + 11) & mask >> 16 << 32;
-        tmp = (tmp * mul + 11) & mask << 16 >> 32;
-        i = tmp | 1;
-        return i;
-    }
-    public static final long getJ(long seed){
-        long j = 0;
-        long i = getI(seed);
-        long tmp = i;
-        tmp = (tmp * mul + 11) & mask >> 16 << 32;
-        tmp = (tmp * mul + 11) & mask << 16 >> 32;
-        j = tmp | 1;
-        return j;
-    }
-    public static final String[] chunkDiamond(long seed,long chunkX,long chunkZ){
-        String[] R = new String[2];
-        final long a = seed ^ mul & mask;
-        long i = getI(seed);
-        long j = getJ(seed);
-        long tmp1 = (((((((i*16) + (32*j)) ^ seed + 60009) ^ mul) & mask) * mul) + 11 )& mask;
-        long tmp2 = (tmp1 * mul + 11) & mask;
-        long x = chunkX * 16 + (tmp1 >> 44);
-        long z = chunkZ * 16 + (tmp2 >> 44);
-        R[0] = String.valueOf(x);
-        R[1] = String.valueOf(z);
-        return R;
-    }
-    public static final String[] AllDiamond(long seed){
-        String[] R = new String[]{};
-        int tmp = 0;
-        for(int cx = 0;cx < 100;cx++){
-            for(int cy = 0;cy < 100;cy++){
-                for (String s : chunkDiamond(seed, cx, cy)) {
-                    R[tmp] = s;
-                    tmp ++;        
-                }
+    private static long a = 0, b = 0,c = 0,d = 0,e = 0,i = 0,j = 0,g = 0,h = 0;
+
+    /**
+     * 1.16.5多区块计算
+     * @param seed 种子
+     * @param X X范围
+     * @param Z Z范围
+     * @return 返回钻石位置
+     */
+    public static final ArrayList allChunkDiamondSix(long seed,long X,long Z){
+        arrayList.clear();
+        for (int k = 0; k < X; k++) {
+            for (int l = 0; l < Z; l++) {
+                strings = chunkDiamondSix(seed,k,l);
+                arrayList.add("[" + "X = " + strings[0]);
+                arrayList.add("Y = " + strings[1] + "]" + "\n");
             }
         }
-        return R;
-    }*/
+        return arrayList;
+    }
+    /**
+     * 1.17.1多区块计算
+     * @param seed 种子
+     * @param X X范围
+     * @param Z Z范围
+     * @return 返回钻石位置
+     */
+    public static final ArrayList allChunkDiamondSeven(long seed,long X,long Z){
+        arrayList.clear();
+        for (int k = 0; k < X; k++) {
+            for (int l = 0; l < Z; l++) {
+                strings = chunkDiamondSeven(seed,k,l);
+                arrayList.add("[" + "X = " + strings[0]);
+                arrayList.add("Y = " + strings[1] + "]" + "\n");
+            }
+        }
+        return arrayList;
+    }
+    /**
+     * 1.16.5获取钻石位置
+     * @param seed 种子号
+     * @param chunkX 区块X坐标
+     * @param chunkZ 区块Z坐标
+     * @return 钻石坐标 strings[0] = X坐标,strings[1] = Z坐标
+     */
+    public static final String[] chunkDiamondSix(long seed,long chunkX,long chunkZ){
+        long[] longs1 = getRelatively(getTemporary(seed, chunkX, chunkZ) + 60009);
+        strings[0] = String.valueOf(longs1[0] + 16 * chunkX);
+        strings[1] = String.valueOf(longs1[1] + 16 * chunkZ);
+        return strings;
+    }
+    /**
+     * 1.17.1获取钻石位置
+     * @param seed 种子号
+     * @param chunkX 区块X坐标
+     * @param chunkZ 区块Z坐标
+     * @return 钻石坐标 strings[0] = X坐标,strings[1] = Z坐标
+     */
+    public static final String[] chunkDiamondSeven(long seed,long chunkX,long chunkZ){
+        long[] longs1 = getRelatively(getTemporary(seed, chunkX, chunkZ) + 60011);
+        strings[0] = String.valueOf(longs1[0] + 16 * chunkX);
+        strings[1] = String.valueOf(longs1[1] + 16 * chunkZ);
+        return strings;
+    }
+    /**
+     * 获取相对坐标
+     * @param temporary 临时变量
+     * @return 返回相对坐标的数组 long[0] = X,long[1] = Y
+     */
+    public static final long[] getRelatively(long temporary){
+        temporary = temporary ^ mul & mask;
+        g = (temporary * mul + 11) & mask;
+        h = (g * mul + 11) & mask;
+        longs[0] = g >> 44;
+        longs[1] = h >> 44;
+        return longs;
+    }
+    /**
+     * 获取临时变量
+     * @param seed 种子号
+     * @param chunkX 区块X坐标
+     * @param chunkZ 区块Z坐标
+     * @return  返回时临时变量
+     */
+    public static final long getTemporary(long seed,long chunkX,long chunkZ){
+        a = seed ^ mul & mask;
+        b = (a * mul + 11) & mask;
+        c = (b * mul + 11) & mask;
+        d = (c * mul + 11) & mask;
+        e = (d * mul + 11) & mask;
+        i = (((b >> 16) << 32) + ((c <<16) >> 32) ) | 1;
+        j = (((d >> 16) << 32) + ((e << 16) >> 32) ) | 1;
+        return (((16 * chunkX * i + 16 * chunkZ * j) ^ seed));
+    }
 }
