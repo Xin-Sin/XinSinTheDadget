@@ -2,6 +2,8 @@ package top.xinsin.io;
 
 import java.io.*;
 
+import static top.xinsin.randomOrderMain.log;
+
 public class ModifyFile extends AbsName {
     public ModifyFile() {
     }

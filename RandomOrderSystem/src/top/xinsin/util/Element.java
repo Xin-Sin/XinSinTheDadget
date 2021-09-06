@@ -1,4 +1,4 @@
-package top.xinsin.list;
+package top.xinsin.util;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

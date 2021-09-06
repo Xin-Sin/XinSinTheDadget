@@ -23,14 +23,14 @@ public class TemporarilyStoreData {
      * @param string 传入数据
      * @return 返回该数据
      */
-    public String Submit(String string) {
-        this.string = string;
-        NameWriteThread nameWriteThread = new NameWriteThread();
-        nameWriteThread.setToWrite(string);
-        Thread thread = new Thread(nameWriteThread);
-        thread.start();
-        return string;
-    }
+//    public String Submit(String string) {
+//        this.string = string;
+//        NameWrite nameWrite = new NameWrite();
+//        nameWrite.setToWrite(string);
+//        Thread thread = new Thread(nameWrite);
+//        thread.start();
+//        return string;
+//    }
 
     @Override
     public boolean equals(Object o) {
