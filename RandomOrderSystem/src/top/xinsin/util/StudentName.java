@@ -1,7 +1,5 @@
 package top.xinsin.util;
 
-import top.xinsin.util.Student;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -11,7 +9,7 @@ import java.util.Random;
  */
 public class StudentName implements Serializable {
     private static final long serialVersionUID = 5955141326133509608L;
-    public final ArrayList<Student> list = new ArrayList<>();
+    public final ArrayList<Student> arrayList = new ArrayList<>();
     private final Random random = new Random();
     private static StudentName studentName;
     private StringBuilder stringBuilder = new StringBuilder();
@@ -31,7 +29,7 @@ public class StudentName implements Serializable {
      */
     public StringBuilder get(){
         stringBuilder.setLength(0);
-        for(Student obj:list){
+        for(Student obj: arrayList){
             stringBuilder.append(obj + "\n");
         }
         return stringBuilder;
@@ -43,10 +41,10 @@ public class StudentName implements Serializable {
      */
     public String call(){
         try {
-            int value = random.nextInt(list.size());
-            Object studentName = list.get(value);
+            int value = random.nextInt(arrayList.size());
+            Object studentName = arrayList.get(value);
             String str = ((Student) studentName).getName();
-            list.remove(value);
+            arrayList.remove(value);
             return str;
         }catch (IllegalArgumentException e){
             return "null";
@@ -56,7 +54,7 @@ public class StudentName implements Serializable {
     @Override
     public String toString() {
         return "StudentName{" +
-                "list=" + list +
+                "list=" + arrayList +
                 ", random=" + random +
                 ", stringBuilder=" + stringBuilder +
                 '}';

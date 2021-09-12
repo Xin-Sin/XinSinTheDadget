@@ -15,15 +15,14 @@ import static top.xinsin.randomOrderMain.log;
  */
 public class NameRead extends AbsName {
     public static StudentName read(String fileName) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        File file = new File(newPath + fileName + ".txt");
+        File file = new File(newPath + fileName);
         log.info("NameRead:读取" + file.toURI() + "的文件");
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         String str;
         StudentName studentName = StudentName.getInstance();
-        studentName.list.clear();
+        studentName.arrayList.clear();
         while((str = bufferedReader.readLine()) != null) {
-            studentName.list.add(new Student(str.trim()));
+            studentName.arrayList.add(new Student(str.trim()));
         }
         bufferedReader.close();
         return studentName;

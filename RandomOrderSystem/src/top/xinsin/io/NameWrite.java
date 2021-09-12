@@ -12,7 +12,7 @@ import static top.xinsin.randomOrderMain.log;
  */
 public class NameWrite extends AbsName{
     public static void write(String fileName,String contents) throws IOException {
-        File file = new File(newPath + fileName + ".txt");
+        File file = new File(newPath + fileName);
         if (!file.exists()){
             file.createNewFile();
             log.info("NameWrite:创建" + file.toURI() + "的文件");
