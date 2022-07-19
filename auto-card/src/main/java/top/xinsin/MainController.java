@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import top.xinsin.util.ReadJson;
 
 import java.awt.*;
@@ -23,8 +25,12 @@ import static top.xinsin.util.Regex.getPasswordAndAccount;
  * @author xinsin
  * @version 1.0.0
  */
+
 public class MainController {
-    private static final String jsonFilePath = "resources/cards.json";
+
+    public static final Logger log = LogManager.getLogger(MainController.class);
+    private static final String jsonFilePath = "res/cards.json";
+
     private static final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
     public TextField password;
     public TextField account;
@@ -65,6 +71,10 @@ public class MainController {
         clipboard.setContents(trans, null);
     }
     public void init(){
+        if (!ReadJson.isFlies(new File(jsonFilePath))){
+            log.info("检测到未创建发卡文件!");
+            //todo 创建文件并写入json格式
+        }
         try {
             jsonObject = ReadJson.readJson(new File(jsonFilePath));
             if (jsonObject.getJSONArray("cards").size() != jsonObject.getIntValue("total")){

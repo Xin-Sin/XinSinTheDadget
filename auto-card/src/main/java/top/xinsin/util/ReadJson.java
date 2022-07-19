@@ -43,4 +43,7 @@ public class ReadJson {
         FileUtils.writeStringToFile(file, jsonObject.toJSONString(), "UTF-8");
         return jsonObject;
     }
+    public static boolean isFlies(File file){
+        return file.isFile();
+    }
 }
